@@ -15,7 +15,7 @@ after_success:
   - docker build -t ishwo/multi-worker ./worker 
 
   # Login into the docker hub portal 
-  - echo "$DOCKER_PASSWORD" |  docker login docker.io -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
   # take the built images and push them into docker hub 
 
   - docker tag ishwo/multi-client testmstr/client

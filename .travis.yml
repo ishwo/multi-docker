@@ -15,6 +15,7 @@ after_success:
   - docker build -t ishwo/multi-worker ./worker 
 
   # Login into the docker hub portal 
+  - docker logout
   - echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
   # take the built images and push them into docker hub 
 

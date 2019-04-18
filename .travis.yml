@@ -8,7 +8,7 @@ before_install:
 script: 
   - docker run ishwo/docker-test npm test -- --coverage 
 
-after_sucess: 
+after_success: 
   - docker build -t ishwo/multi-client ./client 
   - docker build -t ishwo/multi-nginx ./nginx 
   - docker build -t ishwo/multi-server ./server 

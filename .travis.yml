@@ -1,0 +1,27 @@
+sudo: required 
+services: 
+  - docker 
+
+before_install: 
+  - docker build -t ishwo/docker-test -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run ishwo/docker-test npm test -- --coverage 
+
+after_sucess: 
+  - docker build -t ishwo/multi-client ./client 
+  - docker build -t ishwo/multi-nginx ./nginx 
+  - docker build -t ishwo/multi-server ./server 
+  - docker build -t ishwo/multi-worker ./worker 
+
+  # Login into the docker hub portal 
+  - echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
+  # take the built images and push them into docker hub 
+
+  - docker push ishwo/multi-client
+  - docker push ishwo/multi-nginx 
+  - docker push ishwo/multi-server 
+  - docker push ishwo/multi-worker 
+
+  
+

@@ -15,12 +15,17 @@ after_success:
   - docker build -t ishwo/multi-worker ./worker 
 
   # Login into the docker hub portal 
+  - docker logout
   - echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
   # take the built images and push them into docker hub 
 
+  - docker tag ishwo/multi-client testmstr/client
   - docker push ishwo/multi-client
+  - docker tag ishwo/multi-nginx testmstr/nginx
   - docker push ishwo/multi-nginx 
+  - docker tag ishwo/multi-server testmstr/server
   - docker push ishwo/multi-server 
+  - docker tag ishwo/multi-worker testmstr/worker
   - docker push ishwo/multi-worker 
 
 deploy: 

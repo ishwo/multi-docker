@@ -32,7 +32,7 @@ deploy:
   provider: elasticbeanstalk 
   region: us-east-1
   app: Multi-Docker
-  env: Multi-Docker-env
+  env: MultiDocker-env
   bucket_name: elasticbeanstalk-us-east-1-882052631678
   bucket_path: docker-multi
   on: 
@@ -40,7 +40,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: 
       secure: $AWS_SECRET_KEY 
-      
+
 
 
 
